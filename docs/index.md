@@ -22,7 +22,7 @@ Minimaps can be very different dependng on the game genre and the specific chara
 -Important icons which are not in the minimap area can be placed in the edge of the minimap for the player to know the direction where they are and be able to follo it until he reaches the area where the icon is. 
 - In strategy games if the game is made for PC it is useful to make the map interactable so the player can move eaily through the map using the minimap.
 - To help people with color blindness the minimap icons should have a well contrasted color or at least there should be the possibility to change the icons colors to high contrasted ones. 
-
+- Depending on the size of the map the minimap can show all the map extension or just a part of it. For example in racing games the circuit is small enough to be displayed entirely in the minimap while in most RPGs the map is too big and not even an eleventh part of it can be shown in the minimap. 
 ## Implementation
 
 ## Sources
