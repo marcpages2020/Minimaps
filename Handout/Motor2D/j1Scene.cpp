@@ -44,9 +44,6 @@ bool j1Scene::Start()
 
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	// TODO 3: Create the banner (rect {485, 829, 328, 103}) as a UI element
-	// TODO 4: Create the text "Hello World" as a UI element
-
 	return true;
 }
 
@@ -105,6 +102,7 @@ bool j1Scene::Update(float dt)
 		App->render->camera.x -= floor(200.0f * dt);
 
 	App->map->Draw();
+	App->map->DrawMinimap();
 
 	int x, y;
 	App->input->GetMousePosition(x, y);

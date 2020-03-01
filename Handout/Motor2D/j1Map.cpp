@@ -22,6 +22,8 @@ bool j1Map::Awake(pugi::xml_node& config)
 	bool ret = true;
 
 	folder.create(config.child("folder").child_value());
+	
+	LoadMinimapData(config.child("minimap"));
 
 	return ret;
 }
@@ -498,4 +500,59 @@ bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 	}
 
 	return ret;
+}
+
+//Minimap
+
+void j1Map::DrawMinimap() {
+	if (map_loaded == false)
+		return;
+
+	minimap.scale = minimap.width / (data.width * data.tile_width);
+	minimap.margin.x = minimap.width + minimap.margin.y;
+
+	p2List_item<MapLayer*>* item = data.layers.start;
+
+	for (; item != NULL; item = item->next)
+	{
+		MapLayer* layer = item->data;
+
+		if (layer->properties.Get("Nodraw") != 0)
+			continue;
+
+		for (int y = 0; y < data.height; ++y)
+		{
+			for (int x = 0; x < data.width; ++x)
+			{
+				int tile_id = layer->Get(x, y);
+				if (tile_id > 0)
+				{
+					TileSet* tileset = GetTilesetFromTileId(tile_id);
+
+					SDL_Rect r = tileset->GetTileRect(tile_id);
+					iPoint pos = MapToWorld(x, y);
+
+					App->render->Blit(tileset->texture, pos.x + minimap.margin.x, pos.y + minimap.margin.y, &r, minimap.scale, 0);
+				}
+			}
+		}
+	}
+}
+
+void j1Map::LoadMinimapData(pugi::xml_node& minimap_node) {
+	int margin;
+	//scale
+	minimap.width = minimap_node.attribute("width").as_int();
+	//minimap.scale = (minimap_width / (data.tile_width * data.width));
+	
+	//corner
+	p2SString corner(minimap_node.attribute("corner").as_string());
+
+	if (corner == "top_left") minimap.corner = MinimapCorner::TOP_LEFT;
+	else if (corner == "top_right") minimap.corner = MinimapCorner::TOP_RIGHT;
+	else if (corner == "bottom_left") minimap.corner = MinimapCorner::BOTTOM_LEFT;
+	else if (corner == "bottom_right") minimap.corner = MinimapCorner::BOTTOM_RIGHT;
+
+	margin = minimap_node.attribute("margin").as_int();
+	minimap.margin.y = margin;
 }
