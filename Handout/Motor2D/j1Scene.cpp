@@ -102,7 +102,6 @@ bool j1Scene::Update(float dt)
 		App->render->camera.x -= floor(200.0f * dt);
 
 	App->map->Draw();
-	App->map->DrawMinimap();
 
 	int x, y;
 	App->input->GetMousePosition(x, y);

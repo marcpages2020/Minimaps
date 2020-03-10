@@ -5,22 +5,9 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "j1Module.h"
+#include "j1Render.h"
 
 // ----------------------------------------------------
-
-enum class MinimapCorner {
-	TOP_LEFT,
-	TOP_RIGHT,
-	BOTTOM_LEFT,
-	BOTTOM_RIGHT
-};
-
-struct Minimap {
-	float scale;
-	float width;
-	iPoint margin;
-	MinimapCorner corner;
-};
 
 struct Properties
 {
@@ -127,14 +114,12 @@ public:
 
 	// Called each loop iteration
 	void Draw();
-	void DrawMinimap();
 
 	// Called before quitting
 	bool CleanUp();
 
 	// Load new map
 	bool Load(const char* path);
-	void LoadMinimapData(pugi::xml_node& minimap_node);
 
 	iPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(int x, int y) const;
@@ -153,7 +138,6 @@ private:
 public:
 
 	MapData data;
-	Minimap minimap;
 
 private:
 
