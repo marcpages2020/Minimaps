@@ -4,6 +4,7 @@
 #include "j1Textures.h"
 #include "j1Scene.h"
 #include "j1Window.h"
+#include "j1Render.h"
 
 j1Minimap::j1Minimap() : j1Module() {
 	name.create("minimap");
@@ -60,13 +61,18 @@ bool j1Minimap::Awake(pugi::xml_node& config) {
 
 bool j1Minimap::Start() {
 	bool ret = true;
-	scale = ((float)App->map->data.tile_width / width);
-	height = App->map->data.tile_height * App->map->data.height * scale;
-	map_surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-	map_renderer = SDL_CreateSoftwareRenderer(map_surface);
-	texture = App->tex->Load("maps/isometric_grass_and_water.png");
+	width = 300;
+	map_width = App->map->data.tile_width * App->map->data.width;
+	map_height = App->map->data.tile_height * App->map->data.height;
+	scale = (width / ((float)map_width));
+	height = map_height * scale;
+	//map_surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+	//texture = App->tex->Load("maps/isometric_grass_and_water.png");
+	texture = SDL_CreateTexture(App->render->renderer, SDL_GetWindowPixelFormat(App->win->window), SDL_TEXTUREACCESS_TARGET, width + 100, height + 100);
+	SDL_SetRenderTarget(App->render->renderer, texture);
 	CreateMinimap();
-	minimap_texture = SDL_CreateTextureFromSurface(map_renderer, map_surface);
+	SDL_SetRenderTarget(App->render->renderer, NULL);
+	minimap_texture = SDL_CreateTextureFromSurface(App->render->renderer, map_surface);
 	return ret;
 }
 
@@ -81,6 +87,8 @@ bool j1Minimap::CreateMinimap() {
 		if (layer->properties.Get("Nodraw") != 0)
 			continue;
 
+		int half_width = map_width * 0.5f;
+
 		for (int y = 0; y < App->map->data.height; ++y)
 		{
 			for (int x = 0; x < App->map->data.width; ++x)
@@ -94,7 +102,7 @@ bool j1Minimap::CreateMinimap() {
 					iPoint pos = App->map->MapToWorld(x, y);
 					pos = App->render->WorldToScreen(pos.x, pos.y);
 
-					App->render->Blit(texture, pos.x, pos.y, &r, 1, map_renderer);
+					App->render->Blit(tileset->texture, pos.x + half_width, pos.y, &r,scale);
 				}
 			}
 		}
@@ -103,6 +111,8 @@ bool j1Minimap::CreateMinimap() {
 }
 
 bool j1Minimap::PostUpdate() {
-	App->render->Blit(minimap_texture, position.x, position.y, NULL, scale, map_renderer);
+	SDL_Rect rect = { 0,0,width, height};
+	App->render->Blit(texture, position.x, position.y, &rect, 1.0, 0);
+	//CreateMinimap();
 	return true;
 }

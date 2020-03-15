@@ -32,6 +32,9 @@ private:
 	iPoint position;
 	int margin;
 	Corner corner;
+
+	int map_width;
+	int map_height;
 };
 
 #endif // !_j1MINIMAP_H
