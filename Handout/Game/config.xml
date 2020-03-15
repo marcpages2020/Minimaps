@@ -24,7 +24,6 @@
 
   <map>
     <folder>maps/</folder>
-    <minimap width="250" corner="top_left" margin="200"/>
   </map>
-
+  <minimap width="200" corner="top_left" margin="10"/>
 </config>

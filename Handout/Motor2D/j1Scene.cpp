@@ -101,7 +101,7 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x -= floor(200.0f * dt);
 
-	App->map->Draw();
+	//App->map->Draw();
 
 	int x, y;
 	App->input->GetMousePosition(x, y);

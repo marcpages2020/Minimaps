@@ -29,9 +29,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new j1Audio();
 	scene = new j1Scene();
 	map = new j1Map();
-	//minimap = new j1Minimap();
 	pathfinding = new j1PathFinding();
 	font = new j1Fonts();
+	minimap = new j1Minimap();
 	gui = new j1Gui();
 
 	// Ordered for awake / Start / Update
@@ -41,13 +41,13 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	//AddModule(minimap);
 	AddModule(pathfinding);
 	AddModule(font);
 	AddModule(gui);
 
 	// scene last
 	AddModule(scene);
+	AddModule(minimap);
 
 	// render last to swap buffer
 	AddModule(render);
