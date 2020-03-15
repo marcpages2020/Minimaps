@@ -9,9 +9,8 @@
 j1Minimap::j1Minimap() : j1Module() {
 	name.create("minimap");
 
-	minimap_texture = nullptr;
 	texture = nullptr;
-	map_surface = nullptr;;
+	surface = nullptr;
 	map_renderer = nullptr;
 
 	scale = 1;
@@ -64,15 +63,18 @@ bool j1Minimap::Start() {
 	width = 300;
 	map_width = App->map->data.tile_width * App->map->data.width;
 	map_height = App->map->data.tile_height * App->map->data.height;
-	scale = (width / ((float)map_width));
-	height = map_height * scale;
-	//map_surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+	scale = ((width) / ((float)map_width));
+	height = (map_height) * scale;
+
+	surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 	//texture = App->tex->Load("maps/isometric_grass_and_water.png");
-	texture = SDL_CreateTexture(App->render->renderer, SDL_GetWindowPixelFormat(App->win->window), SDL_TEXTUREACCESS_TARGET, width + 100, height + 100);
+
+	texture = SDL_CreateTexture(App->render->renderer, SDL_GetWindowPixelFormat(App->win->window), SDL_TEXTUREACCESS_TARGET,1.05f * width, 1.05f *height);
 	SDL_SetRenderTarget(App->render->renderer, texture);
 	CreateMinimap();
+	//texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
 	SDL_SetRenderTarget(App->render->renderer, NULL);
-	minimap_texture = SDL_CreateTextureFromSurface(App->render->renderer, map_surface);
+
 	return ret;
 }
 
@@ -111,8 +113,6 @@ bool j1Minimap::CreateMinimap() {
 }
 
 bool j1Minimap::PostUpdate() {
-	SDL_Rect rect = { 0,0,width, height};
-	App->render->Blit(texture, position.x, position.y, &rect, 1.0, 0);
-	//CreateMinimap();
+	App->render->Blit(texture, position.x, position.y, NULL, 1.0, 0);
 	return true;
 }

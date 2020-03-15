@@ -21,9 +21,8 @@ public:
 	bool CreateMinimap();
 	bool PostUpdate();
 private:
-	SDL_Texture* minimap_texture;
 	SDL_Texture* texture;
-	SDL_Surface* map_surface;
+	SDL_Surface* surface;
 	SDL_Renderer* map_renderer;
 
 	float scale;
