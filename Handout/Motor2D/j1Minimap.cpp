@@ -23,7 +23,6 @@ j1Minimap::~j1Minimap() {
 }
 
 bool j1Minimap::Awake(pugi::xml_node& config) {
-	uint window_width, window_height;
 	//scale
 	width = config.attribute("width").as_int();
 
@@ -31,49 +30,61 @@ bool j1Minimap::Awake(pugi::xml_node& config) {
 	p2SString corner_string(config.attribute("corner").as_string());
 	margin = config.attribute("margin").as_int();
 
-	if (corner_string == "top_left") {
+	if (corner_string == "top_left") 
 		corner = Corner::TOP_LEFT;
-		position.x = margin;
-		position.y = margin;
-	}
-	else if (corner_string == "top_right") {
+	else if (corner_string == "top_right") 
 		corner = Corner::TOP_RIGHT;
-		App->win->GetWindowSize(window_width, window_height);
-		position.x = window_width - margin;
-		position.y = margin;
-	}
-	else if (corner_string == "bottom_left") {
+	else if (corner_string == "bottom_left") 
 		corner = Corner::BOTTOM_LEFT;
-		App->win->GetWindowSize(window_width, window_height);
-		position.x = margin;
-		position.y = window_height - margin;
-	}
-	else if (corner_string == "bottom_right") {
+	else if (corner_string == "bottom_right") 
 		corner = Corner::BOTTOM_RIGHT;
-		App->win->GetWindowSize(window_width, window_height);
-		position.x = window_width - margin;
-		position.y = window_height - margin;
-	}
 
 	return true;
 }
 
 bool j1Minimap::Start() {
 	bool ret = true;
-	width = 300;
+	uint window_width, window_height;
+	App->win->GetWindowSize(window_width, window_height);
+
 	map_width = App->map->data.tile_width * App->map->data.width;
 	map_height = App->map->data.tile_height * App->map->data.height;
 	scale = ((width) / ((float)map_width));
 	height = (map_height) * scale;
 
-	surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-	//texture = App->tex->Load("maps/isometric_grass_and_water.png");
-
+	/*
 	texture = SDL_CreateTexture(App->render->renderer, SDL_GetWindowPixelFormat(App->win->window), SDL_TEXTUREACCESS_TARGET,1.05f * width, 1.05f *height);
 	SDL_SetRenderTarget(App->render->renderer, texture);
 	CreateMinimap();
-	//texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
 	SDL_SetRenderTarget(App->render->renderer, NULL);
+	*/
+
+	surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+	map_renderer = SDL_CreateSoftwareRenderer(surface);
+	texture = App->tex->Load("maps/isometric_grass_and_water.png", map_renderer);
+	CreateMinimap();
+	minimap_texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
+	switch (corner)
+	{
+	case Corner::TOP_LEFT:
+		position.x = margin;
+		position.y = margin;
+		break;
+	case Corner::TOP_RIGHT:
+		position.x = window_width - width - margin;
+		position.y = margin;
+		break;
+	case Corner::BOTTOM_LEFT:
+		position.x = margin;
+		position.y = window_height - height - margin;
+		break;
+	case Corner::BOTTOM_RIGHT:
+		position.x = window_width - width - margin;
+		position.y = window_height - height - margin;
+		break;
+	default:
+		break;
+	}
 
 	return ret;
 }
@@ -104,7 +115,7 @@ bool j1Minimap::CreateMinimap() {
 					iPoint pos = App->map->MapToWorld(x, y);
 					pos = App->render->WorldToScreen(pos.x, pos.y);
 
-					App->render->Blit(tileset->texture, pos.x + half_width, pos.y, &r,scale);
+					App->render->Blit(texture, pos.x + half_width, pos.y, &r,scale, map_renderer);
 				}
 			}
 		}

@@ -6,6 +6,7 @@
 
 struct SDL_Texture;
 struct SDL_Surface;
+struct SDL_Renderer;
 
 class j1Textures : public j1Module
 {
@@ -26,9 +27,9 @@ public:
 	bool CleanUp();
 
 	// Load Texture
-	SDL_Texture* const	Load(const char* path);
+	SDL_Texture* const	Load(const char* path, SDL_Renderer* renderer = NULL);
 	bool				UnLoad(SDL_Texture* texture);
-	SDL_Texture* const	LoadSurface(SDL_Surface* surface);
+	SDL_Texture* const	LoadSurface(SDL_Surface* surface, SDL_Renderer* renderer = NULL);
 	void				GetSize(const SDL_Texture* texture, uint& width, uint& height) const;
 
 public:

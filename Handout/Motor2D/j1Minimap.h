@@ -22,6 +22,7 @@ public:
 	bool PostUpdate();
 private:
 	SDL_Texture* texture;
+	SDL_Texture* minimap_texture;
 	SDL_Surface* surface;
 	SDL_Renderer* map_renderer;
 
