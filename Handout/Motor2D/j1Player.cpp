@@ -20,12 +20,7 @@ bool j1Player::PreUpdate() {
 
 		if ((mouse_x > minimap.x) && (mouse_x < minimap.x + minimap.w) && (mouse_y > minimap.y) && (mouse_y < minimap.y + minimap.h))
 		{
-		App->input->GetMousePosition(mouse_x, mouse_y);
-		SDL_Rect minimap = { App->minimap->position.x, App->minimap->position.y, App->minimap->width, App->minimap->height };
-
 		iPoint minimap_mouse_position;
-		//minimap_mouse_position = App->minimap->WorldToMinimap(mouse_x, mouse_y);
-		//minimap_mouse_position = App->minimap->MinimapToWorld(minimap_mouse_position.x, minimap_mouse_position.x);
 		minimap_mouse_position = App->minimap->ScreenToMinimap(mouse_x, mouse_y);
 		LOG("Minimap position: x: %i y: %i", minimap_mouse_position.x, minimap_mouse_position.y);
 

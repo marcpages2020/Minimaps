@@ -8,10 +8,12 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1Minimap.h"
 
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
+	test_rect = { 400,400,20,40 };
 }
 
 // Destructor
@@ -95,9 +97,12 @@ bool j1Scene::Update(float dt)
 bool j1Scene::PostUpdate()
 {
 	bool ret = true;
-
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
+
+	App->render->DrawQuad(test_rect, 255, 0, 0, 255);
+	test_rect.x;
+	test_rect.y;
 
 	return ret;
 }

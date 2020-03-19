@@ -34,10 +34,10 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+public:
+	SDL_Rect test_rect;
 private:
 	SDL_Texture* debug_tex;
-	GuiImage* banner;
-	GuiText* text;
 };
 
 #endif // __j1SCENE_H__

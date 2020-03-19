@@ -37,6 +37,7 @@ private:
 	int margin;
 	Corner corner;
 	SDL_Texture* texture;
+	SDL_Rect minimap_test_rect;
 };
 
 #endif // !_j1MINIMAP_H

@@ -15,6 +15,7 @@ j1Minimap::j1Minimap() : j1Module() {
 	width = 100;
 	margin = 0;
 	corner = Corner::TOP_LEFT;
+	minimap_test_rect = { 0,0,4,4 };
 }
 
 j1Minimap::~j1Minimap() {
@@ -119,27 +120,25 @@ bool j1Minimap::CreateMinimap() {
 
 bool j1Minimap::PostUpdate() {
 	App->render->Blit(texture, position.x, position.y, NULL, 1.0, 0);
+
 	SDL_Rect rect = {0,0,0,0};
-	iPoint rect_position = WorldToMinimap(App->render->camera.x, App->render->camera.y);
+	iPoint rect_position = WorldToMinimap(-App->render->camera.x, -App->render->camera.y);
 	App->render->DrawQuad({rect_position.x, rect_position.y, (int)(App->render->camera.w * scale),(int)(App->render->camera.h * scale) }, 255,255,255,255, false, false);
+	
+	iPoint minimap_test_rect_position = App->minimap->WorldToMinimap(App->scene->test_rect.x, App->scene->test_rect.y);
+	minimap_test_rect.x = minimap_test_rect_position.x;
+	minimap_test_rect.y = minimap_test_rect_position.y;
+	App->render->DrawQuad(minimap_test_rect, 255, 0, 0, 255,true,false);
 	return true;
 }
 
 iPoint j1Minimap::WorldToMinimap(int x, int y) {
 	iPoint minimap_position;
 
-	minimap_position.x = position.x + width * 0.5f - x * scale;
-	minimap_position.y = position.y - y * scale;
+	minimap_position.x = position.x + width * 0.5f + x * scale;
+	minimap_position.y = position.y + y * scale;
 
 	return minimap_position;
-}
-
-iPoint j1Minimap::MinimapToWorld(int x, int y) {
-	iPoint world_position;
-	world_position.x = (x - position.x - width * 0.5f) / scale;
-	//world_position.y =  (y + App->render->camera.y - position.y ) / scale;
-	world_position.y = 200;
-	return world_position;
 }
 
 iPoint j1Minimap::ScreenToMinimap(int x, int y) {
