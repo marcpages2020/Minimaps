@@ -10,8 +10,6 @@ j1Minimap::j1Minimap() : j1Module() {
 	name.create("minimap");
 
 	texture = nullptr;
-	surface = nullptr;
-	map_renderer = nullptr;
 
 	scale = 1;
 	width = 100;
@@ -33,26 +31,15 @@ bool j1Minimap::Awake(pugi::xml_node& config) {
 
 	if (corner_string == "top_left") {
 		corner = Corner::TOP_LEFT;
-		position.x = margin;
-		position.y = margin;
 	}
 	else if (corner_string == "top_right") {
 		corner = Corner::TOP_RIGHT;
-		App->win->GetWindowSize(window_width, window_height);
-		position.x = window_width - margin;
-		position.y = margin;
 	}
 	else if (corner_string == "bottom_left") {
 		corner = Corner::BOTTOM_LEFT;
-		App->win->GetWindowSize(window_width, window_height);
-		position.x = margin;
-		position.y = window_height - margin;
 	}
 	else if (corner_string == "bottom_right") {
 		corner = Corner::BOTTOM_RIGHT;
-		App->win->GetWindowSize(window_width, window_height);
-		position.x = window_width - margin;
-		position.y = window_height - margin;
 	}
 
 	return true;
@@ -60,20 +47,38 @@ bool j1Minimap::Awake(pugi::xml_node& config) {
 
 bool j1Minimap::Start() {
 	bool ret = true;
-	width = 300;
+	uint window_width, window_height;
+	App->win->GetWindowSize(window_width, window_height);
+
 	map_width = App->map->data.tile_width * App->map->data.width;
 	map_height = App->map->data.tile_height * App->map->data.height;
 	scale = ((width) / ((float)map_width));
 	height = (map_height) * scale;
 
-	surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-	//texture = App->tex->Load("maps/isometric_grass_and_water.png");
-
 	texture = SDL_CreateTexture(App->render->renderer, SDL_GetWindowPixelFormat(App->win->window), SDL_TEXTUREACCESS_TARGET,1.05f * width, 1.05f *height);
 	SDL_SetRenderTarget(App->render->renderer, texture);
 	CreateMinimap();
-	//texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
 	SDL_SetRenderTarget(App->render->renderer, NULL);
+
+	switch (corner)
+	{
+	case Corner::TOP_LEFT:
+		position.x = margin;
+		position.y = margin;
+		break;
+	case Corner::TOP_RIGHT:
+		position.x = window_width - width - margin;
+		position.y = margin;
+		break;
+	case Corner::BOTTOM_LEFT:
+		position.x = margin;
+		position.y = window_height - height - margin;
+		break;
+	case Corner::BOTTOM_RIGHT:
+		position.x = window_width - width - margin;
+		position.y = window_height - height - margin;
+		break;
+	}
 
 	return ret;
 }
@@ -114,5 +119,32 @@ bool j1Minimap::CreateMinimap() {
 
 bool j1Minimap::PostUpdate() {
 	App->render->Blit(texture, position.x, position.y, NULL, 1.0, 0);
+	SDL_Rect rect = {0,0,0,0};
+	iPoint rect_position = WorldToMinimap(App->render->camera.x, App->render->camera.y);
+	App->render->DrawQuad({rect_position.x, rect_position.y, (int)(App->render->camera.w * scale),(int)(App->render->camera.h * scale) }, 255,255,255,255, false, false);
 	return true;
+}
+
+iPoint j1Minimap::WorldToMinimap(int x, int y) {
+	iPoint minimap_position;
+
+	minimap_position.x = position.x + width * 0.5f - x * scale;
+	minimap_position.y = position.y - y * scale;
+
+	return minimap_position;
+}
+
+iPoint j1Minimap::MinimapToWorld(int x, int y) {
+	iPoint world_position;
+	world_position.x = (x - position.x - width * 0.5f) / scale;
+	//world_position.y =  (y + App->render->camera.y - position.y ) / scale;
+	world_position.y = 200;
+	return world_position;
+}
+
+iPoint j1Minimap::ScreenToMinimap(int x, int y) {
+	iPoint minimap_position;
+	minimap_position.x = (x - position.x - width * 0.5f)/scale;
+	minimap_position.y = (y - position.y)/scale;
+	return minimap_position;
 }

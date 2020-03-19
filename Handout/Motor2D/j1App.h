@@ -16,9 +16,8 @@ class j1Audio;
 class j1Scene;
 class j1Map;
 class j1PathFinding;
-class j1Fonts;
-class j1Gui;
 class j1Minimap;
+class j1Player;
 
 class j1App
 {
@@ -92,8 +91,7 @@ public:
 	j1Map*				map = NULL;
 	j1Minimap*			minimap = NULL;
 	j1PathFinding*		pathfinding = NULL;
-	j1Fonts*			font = NULL;
-	j1Gui*				gui = NULL;
+	j1Player* player = NULL;
 
 private:
 

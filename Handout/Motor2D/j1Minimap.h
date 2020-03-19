@@ -18,22 +18,25 @@ public:
 
 	bool Start();
 	bool Awake(pugi::xml_node& config);
-	bool CreateMinimap();
 	bool PostUpdate();
-private:
-	SDL_Texture* texture;
-	SDL_Surface* surface;
-	SDL_Renderer* map_renderer;
 
+	bool CreateMinimap();
+	iPoint WorldToMinimap(int x, int y);
+	iPoint MinimapToWorld(int x, int y);
+	iPoint ScreenToMinimap(int x, int y);
+
+public:
 	float scale;
 	int width;
 	int height;
 	iPoint position;
-	int margin;
-	Corner corner;
 
+private:
 	int map_width;
 	int map_height;
+	int margin;
+	Corner corner;
+	SDL_Texture* texture;
 };
 
 #endif // !_j1MINIMAP_H
