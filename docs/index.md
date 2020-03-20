@@ -50,16 +50,20 @@ In RTS games, in order to make the minimap as functional as possible, it normall
 |![StarCraft](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Starcraft%20Minimap.png?raw=true)|![Age of Empires](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/AoE2_Minimap.jpg?raw=true)|![they are billions image](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TheyAreBillionsMinimap.jpg?raw=true)|
 |:---:|:---:|:---:|
 |StarCraft|Age of Empires II|They Are Billions|
+
 ## The future of minimaps
 Minimaps have been present in video games for more than thirty or fourty years, depending on if you count Defender's minimap as one or you count Civilization I as the first. Now it seems that the industry is starting to take them out of the HUD. It can either be for the tendency to reduce the HUD as much as possible in order not to break the inmersion into the game or to replace it with an element which is becoming more popular, the compass.
 
-|![Defender's minimap]()|![Civilization minimap]()|
+|![Defender's minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/defender.png?raw=true)|![Civilization minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Civilization.jpg?raw=true)|
+|:---:|:---:|
+|Defender|Civlization I|
 
 The compass hasn't been invented recently. It has been an important part of some franchises such as The Elder Scrolls or Fallout, but it has started appearing in genres that had always used minimaps such as third person games like Assassin's Creed or Horizon: Zero Dawn. This change has been made mainly because compasses are more discrete and important points now aren't displayed as exact positions but directions, what aims the player to explore a little bit more and if he wants to know the exact position he can always use the map. 
  
 |![Skyrim](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Skyrim%20compass.jpg?raw=true)|![AC compass](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/ACO_Compass.jpg?raw=true)|
-| :---: |:---:|
+|:---: |:---:|
 |Skyrim|Assassin's Creed Origins|
+
 ## Sources
 * [My personal crusade against mini-maps and other corner based HUD elements in immersive games by Andrii Honcharuk on Gamasutra](https://www.gamasutra.com/blogs/AndriiHoncharuk/20170714/301733/My_personal_crusade_against_minimaps_and_other_corner_based_HUD_elements_in_immersive_games.php)
 * [Game UI PAtterns: Mini Map](https://gameuipatterns.com/gameui/mini-map/)
