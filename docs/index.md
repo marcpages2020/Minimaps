@@ -5,6 +5,9 @@ A minimap is a miniature map representation located in a part of the screen. It 
 In order for the player to be oriented it normally has an N or an arrow indicating where the north is. 
 
 |![far cry 3 minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Far_Cry_3_Minimap.jpg?raw=true)|![the witcher 3 minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/The_Witcher_3_Minimap.jpg?raw=true)|
+|:---:|:---:|
+|Far Cry 3|The Witcher 3: Wild Hunt|
+
 
 ## Why to use a minimap?
 A minimap can help the user to get oriented in the game world but its use has created a lot of controversy:
@@ -44,9 +47,9 @@ In RTS games, in order to make the minimap as functional as possible, it normall
  * It can show the path some entities are following.
  * It may have icons represetnting temporary alerts or notifications. 
 
-
-|![starcraft minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Starcraft%20Minimap.png?raw=true) |![age of empires image](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/AoE2_Minimap.jpg?raw=true)|![they are billions image](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TheyAreBillionsMinimap.jpg?raw=true)|
-
+|![StarCraft](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Starcraft%20Minimap.png?raw=true)|![Age of Empires](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/AoE2_Minimap.jpg?raw=true)|![they are billions image](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TheyAreBillionsMinimap.jpg?raw=true)|
+|:---:|:---:|:---:|
+|StarCraft|Age of Empires II|They Are Billions|
 ## The future of minimaps
 Minimaps have been present in video games for more than thirty or fourty years, depending on if you count Defender's minimap as one or you count Civilization I as the first. Now it seems that the industry is starting to take them out of the HUD. It can either be for the tendency to reduce the HUD as much as possible in order not to break the inmersion into the game or to replace it with an element which is becoming more popular, the compass.
 
@@ -54,8 +57,9 @@ Minimaps have been present in video games for more than thirty or fourty years, 
 
 The compass hasn't been invented recently. It has been an important part of some franchises such as The Elder Scrolls or Fallout, but it has started appearing in genres that had always used minimaps such as third person games like Assassin's Creed or Horizon: Zero Dawn. This change has been made mainly because compasses are more discrete and important points now aren't displayed as exact positions but directions, what aims the player to explore a little bit more and if he wants to know the exact position he can always use the map. 
  
-|![Skyrim compass](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Skyrim%20compass.jpg?raw=true)|![AC compass](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/ACO_Compass.jpg?raw=true)|![Horizon Zero Dawn compass]()|
-
+|![Skyrim](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Skyrim%20compass.jpg?raw=true)|![AC compass](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/ACO_Compass.jpg?raw=true)|
+| :---: |:---:|
+|Skyrim|Assassin's Creed Origins|
 ## Sources
 * [My personal crusade against mini-maps and other corner based HUD elements in immersive games by Andrii Honcharuk on Gamasutra](https://www.gamasutra.com/blogs/AndriiHoncharuk/20170714/301733/My_personal_crusade_against_minimaps_and_other_corner_based_HUD_elements_in_immersive_games.php)
 * [Game UI PAtterns: Mini Map](https://gameuipatterns.com/gameui/mini-map/)
