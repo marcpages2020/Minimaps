@@ -1,4 +1,5 @@
-# Minimaps
+I am [Marc Pagès Francesch](https://www.linkedin.com/in/marc-pagès-7206b3186/), student of the [Bachelor's Degree in Video Games by UPC at CITM](https://www.citm.upc.edu/ing/estudis/graus-videojocs/). This content is generated for the second year's subject Project 2, under supervision of lecturer [Marc Garrigó](https://www.linkedin.com/in/mgarrigo/).
+The purpose of this website is to have a look at what Minimaps are, how different games have approached them, which caharacteristics they have and give a little example on how to implement one. So now, let's get into it!
 
 ## What's a minimap?
 A minimap is a miniature map representation located in a part of the screen. It often displays the different points of interest or elements the player might be interested in locating in the game and depending on the game. It can also display the position of allies and enemies.  
@@ -63,6 +64,20 @@ The compass hasn't been invented recently. It has been an important part of some
 |![Skyrim](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Skyrim%20compass.jpg?raw=true)|![AC compass](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/ACO_Compass.jpg?raw=true)|
 |:---: |:---:|
 |Skyrim|Assassin's Creed Origins|
+
+## Implementation in code
+
+In [my repository](https://github.com/marcpages2020/Minimaps) you can find a project with which you can practice a simple implementation of minimaps in C language. 
+
+### TODO 1: Calculate the dimensions of the minimap
+### TODO 2: Create a texture for the minimap
+### TODO 3: Set this texture as a rendering target and create the minimap
+### TODO 4.1: Fill the function WorldToMinimap to make the representation of the rect in the minimap be in the position it should 
+### TODO 4.2: Using WorldToMinimap create a white rect which represents the area of the map in the camera
+### TODO 5: Fill this function to convert a position from screen to the Minimap
+
+
+### Homework
 
 ## Sources
 * [My personal crusade against mini-maps and other corner based HUD elements in immersive games by Andrii Honcharuk on Gamasutra](https://www.gamasutra.com/blogs/AndriiHoncharuk/20170714/301733/My_personal_crusade_against_minimaps_and_other_corner_based_HUD_elements_in_immersive_games.php)

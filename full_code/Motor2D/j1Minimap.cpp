@@ -5,12 +5,15 @@
 #include "j1Scene.h"
 #include "j1Window.h"
 #include "j1Render.h"
+#include "p2Log.h"
 
 j1Minimap::j1Minimap() : j1Module() {
 	name.create("minimap");
 
 	texture = nullptr;
-
+	height = 100;
+	width = 200;
+	map_height = 200;
 	scale = 1;
 	width = 100;
 	margin = 0;
@@ -23,6 +26,7 @@ j1Minimap::~j1Minimap() {
 
 bool j1Minimap::Awake(pugi::xml_node& config) {
 	uint window_width, window_height;
+
 	//scale
 	width = config.attribute("width").as_int();
 
@@ -51,7 +55,7 @@ bool j1Minimap::Start() {
 	uint window_width, window_height;
 	App->win->GetWindowSize(window_width, window_height);
 
-	//calculate scale
+	//calculate scale and dimensions
 	map_width = App->map->data.tile_width * App->map->data.width;
 	map_height = App->map->data.tile_height * App->map->data.height;
 	scale = ((width) / ((float)map_width));
@@ -84,14 +88,30 @@ bool j1Minimap::Start() {
 		break;
 	}
 
-	//load icons
-	icon_tex = App->tex->Load("textures/exclamation.png");
-
 	return ret;
+}
+
+bool j1Minimap::PostUpdate() {
+	//blit minimap
+	App->render->Blit(texture, position.x, position.y, NULL, 1.0, 0);
+	
+	//enemy icon
+	iPoint minimap_test_rect_position = App->minimap->WorldToMinimap(App->scene->test_rect.x, App->scene->test_rect.y);
+	minimap_test_rect.x = minimap_test_rect_position.x;
+	minimap_test_rect.y = minimap_test_rect_position.y;
+	App->render->DrawQuad(minimap_test_rect, 255, 0, 0, 255,true,false);
+
+	//white rect
+	SDL_Rect rect = { 0,0,0,0 };
+	iPoint rect_position = WorldToMinimap(-App->render->camera.x, -App->render->camera.y);
+	App->render->DrawQuad({ rect_position.x, rect_position.y, (int)(App->render->camera.w * scale),(int)(App->render->camera.h * scale) }, 255, 255, 255, 255, false, false);
+
+	return true;
 }
 
 bool j1Minimap::CreateMinimap() {
 
+	PERF_START(ptimer);
 	p2List_item<MapLayer*>* item = App->map->data.layers.start;
 
 	for (; item != NULL; item = item->next)
@@ -121,26 +141,8 @@ bool j1Minimap::CreateMinimap() {
 			}
 		}
 	}
-	return true;
-}
+	PERF_PEEK(ptimer);
 
-bool j1Minimap::PostUpdate() {
-	//blit minimap
-	App->render->Blit(texture, position.x, position.y, NULL, 1.0, 0);
-
-	//white rect
-	SDL_Rect rect = {0,0,0,0};
-	iPoint rect_position = WorldToMinimap(-App->render->camera.x, -App->render->camera.y);
-	App->render->DrawQuad({rect_position.x, rect_position.y, (int)(App->render->camera.w * scale),(int)(App->render->camera.h * scale) }, 255,255,255,255, false, false);
-	
-	//enemy icon
-	iPoint minimap_test_rect_position = App->minimap->WorldToMinimap(App->scene->test_rect.x, App->scene->test_rect.y);
-	minimap_test_rect.x = minimap_test_rect_position.x;
-	minimap_test_rect.y = minimap_test_rect_position.y;
-	App->render->DrawQuad(minimap_test_rect, 255, 0, 0, 255,true,false);
-
-	//icon
-//	App->render->Blit(icon_tex, minimap_test_rect_position.x, minimap_test_rect_position.y, NULL, 0.1, 0);
 	return true;
 }
 
