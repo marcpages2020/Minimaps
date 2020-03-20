@@ -38,6 +38,7 @@ private:
 	Corner corner;
 	SDL_Texture* texture;
 	SDL_Rect minimap_test_rect;
+	SDL_Texture* icon_tex;
 };
 
 #endif // !_j1MINIMAP_H

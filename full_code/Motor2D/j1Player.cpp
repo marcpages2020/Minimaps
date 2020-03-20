@@ -22,7 +22,7 @@ bool j1Player::PreUpdate() {
 		{
 		iPoint minimap_mouse_position;
 		minimap_mouse_position = App->minimap->ScreenToMinimap(mouse_x, mouse_y);
-		LOG("Minimap position: x: %i y: %i", minimap_mouse_position.x, minimap_mouse_position.y);
+		//LOG("Minimap position: x: %i y: %i", minimap_mouse_position.x, minimap_mouse_position.y);
 
 		App->render->camera.x = -(minimap_mouse_position.x - App->render->camera.w * 0.5f);
 		App->render->camera.y = -(minimap_mouse_position.y - App->render->camera.h * 0.5f);
@@ -47,5 +47,6 @@ bool j1Player::PreUpdate() {
 		}
 	}
 	*/
+
 	return ret;
 }
