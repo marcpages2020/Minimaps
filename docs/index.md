@@ -4,7 +4,7 @@
 A minimap is a miniature map representation located in a part of the screen. It often displays the different points of interest or elements the player might be interested in locating in the game and depending on the game it can also display the position of allies and enemies.  
 In order for the player to be oriented it normally has an N or an arrow indicating where the north is. 
 
-|![far cry 3 minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Far_Cry_3_Minimap.jpg?raw=true)|![the witcher 3 minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/The_Witcher_3_Minimap.jpg?raw=true)|
+|![far cry 3 minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Far_Cry_3_Minimap.jpg =600x)|![the witcher 3 minimap](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/The_Witcher_3_Minimap.jpg =600x)|
 
 ## Why to use a minimap?
 A minimap can help the user to get oriented in the game world but its use has created a lot of controversy:
