@@ -70,12 +70,34 @@ The compass hasn't been invented recently. It has been an important part of some
 In [my repository](https://github.com/marcpages2020/Minimaps) you can find a project with which you can practice a simple implementation of minimaps in C language. 
 
 ### TODO 1: Calculate the dimensions of the minimap
-### TODO 2: Create a texture for the minimap
-### TODO 3: Set this texture as a rendering target and create the minimap
-### TODO 4.1: Fill the function WorldToMinimap to make the representation of the rect in the minimap be in the position it should 
-### TODO 4.2: Using WorldToMinimap create a white rect which represents the area of the map in the camera
-### TODO 5: Fill this function to convert a position from screen to the Minimap
+You should determine the scale calculating the map size and relating it to the target map width given in config.
 
+### TODO 2: Create a texture for the minimap
+Create a base texture using the function [SDL_CreateTexture](https://wiki.libsdl.org/SDL_CreateTexture) and the data from the previous TODO. 
+
+### TODO 3: Set this texture as a rendering target and create the minimap
+By now you should have something like this:
+
+![](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TODOs/TODO%203.PNG?raw=true)
+
+Check [SDL_SetRenderTarget](https://wiki.libsdl.org/SDL_SetRenderTarget) and try setting the target to create thet make and blit it. Don't forget to untarget the renderer when you hav finished drawing the map!
+
+### TODO 4.1: Fill the function WorldToMinimap to make the representation of the rect in the minimap be in the position it should 
+By now you should have something like this:
+
+![](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TODOs/TODO%204.gif?raw=true)
+
+### TODO 4.2: Using WorldToMinimap create a white rect which represents the area of the map in the camera
+
+### TODO 5: Convert a position from the screen to the Minimap
+
+### TODO 6: Transform the position of the mouse into Minimap coordinates and then to the world
+
+### TODO 7: Move the camera when the player clicks on the minimap or scrolls the mouse on it while holding the left button
+If the player clicks or holds the left mouse button while the mouse is on the minimap the camera should change it's position properly. 
+And this should be the final result!
+
+![](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TODOs/TODO%207.gif?raw=true)
 
 ### Homework
 

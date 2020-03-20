@@ -27,7 +27,7 @@ j1Minimap::~j1Minimap() {
 bool j1Minimap::Awake(pugi::xml_node& config) {
 	uint window_width, window_height;
 
-	//scale
+	//TODO 0: Take into account for the next TODO that the minimap widht is set in config
 	width = config.attribute("width").as_int();
 
 	//corner
