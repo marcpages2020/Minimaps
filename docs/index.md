@@ -76,22 +76,26 @@ You should determine the scale calculating the map size and relating it to the t
 Create a base texture using the function [SDL_CreateTexture](https://wiki.libsdl.org/SDL_CreateTexture) and the data from the previous TODO. 
 
 ### TODO 3: Set this texture as a rendering target and create the minimap
+
+Check [SDL_SetRenderTarget](https://wiki.libsdl.org/SDL_SetRenderTarget) and try setting the target to create thet make and blit it. Don't forget to untarget the renderer when you hav finished drawing the map!
+
 By now you should have something like this:
 
 ![](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TODOs/TODO%203.PNG?raw=true)
 
-Check [SDL_SetRenderTarget](https://wiki.libsdl.org/SDL_SetRenderTarget) and try setting the target to create thet make and blit it. Don't forget to untarget the renderer when you hav finished drawing the map!
-
 ### TODO 4.1: Fill the function WorldToMinimap to make the representation of the rect in the minimap be in the position it should 
-By now you should have something like this:
+When done, you should see something like this on screen: 
 
 ![](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TODOs/TODO%204.gif?raw=true)
 
-### TODO 4.2: Using WorldToMinimap create a white rect which represents the area of the map in the camera
+### TODO 4.2: Using WorldToMinimap create a white rect which represents the area that the camera records of the world onto the minimap 
+Don't forget to make it a not filled rect!
 
-### TODO 5: Convert a position from the screen to the Minimap
+### TODO 5: Convert a position from the screen to the Minimap and directly to world
+Fill the function which can convert a screen position into world coordinates knowing the minimap position and the scale
 
 ### TODO 6: Transform the position of the mouse into Minimap coordinates and then to the world
+Now that you have your conversion function use it ot convert the mouse position
 
 ### TODO 7: Move the camera when the player clicks on the minimap or scrolls the mouse on it while holding the left button
 If the player clicks or holds the left mouse button while the mouse is on the minimap the camera should change it's position properly. 
@@ -100,6 +104,11 @@ And this should be the final result!
 ![](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TODOs/TODO%207.gif?raw=true)
 
 ### Homework
+Now that you have all the basic material to implement a minimap imagination is the limit! Here are some examples of things you could try:
+* Add more icons onto the minimap.
+* Try replacing the squares by textures. 
+* Using the config file try changing the corner in which the minimap, the margin and the width.
+* Try replacing the black background by a colored one.  
 
 ## Sources
 * [My personal crusade against mini-maps and other corner based HUD elements in immersive games by Andrii Honcharuk on Gamasutra](https://www.gamasutra.com/blogs/AndriiHoncharuk/20170714/301733/My_personal_crusade_against_minimaps_and_other_corner_based_HUD_elements_in_immersive_games.php)

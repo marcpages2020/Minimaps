@@ -91,7 +91,7 @@ bool j1Minimap::PostUpdate() {
 	
 	//TODO 4.1: Fill the function WorldToMinimap to make the representation of the rect in the minimap be in the position it should 
 
-	//TODO 4.2: Using WorldToMinimap create a white rect which represents the area of the map in the camera
+	//TODO 4.2: Using WorldToMinimap create a white rect which represents the area that the camera records of the world onto the minimap 
 
 	return true;
 }
@@ -139,8 +139,8 @@ iPoint j1Minimap::WorldToMinimap(int x, int y) {
 	return minimap_position;
 }
 
-iPoint j1Minimap::ScreenToMinimap(int x, int y) {
-	//TODO 5: Fill this function to convert a position from screen to the Minimap
+iPoint j1Minimap::ScreenToMinimapToWorld(int x, int y) {
+	//TODO 5: Fill this function to convert a position from screen to the Minimap and directly to world
 	iPoint minimap_position = {0,0};
 	return minimap_position;
 }

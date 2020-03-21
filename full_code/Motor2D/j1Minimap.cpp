@@ -27,6 +27,7 @@ j1Minimap::~j1Minimap() {
 bool j1Minimap::Awake(pugi::xml_node& config) {
 	uint window_width, window_height;
 
+	//TODO 0: Take into account for the next TODO that the minimap widht is set in config
 	width = config.attribute("width").as_int();
 
 	//corner
@@ -102,7 +103,7 @@ bool j1Minimap::PostUpdate() {
 	minimap_test_rect.y = minimap_test_rect_position.y;
 	App->render->DrawQuad(minimap_test_rect, 255, 0, 0, 255,true,false);
 
-	//TODO 4.2: Using WorldToMinimap create a white rect which represents the area of the map in the camera
+	//TODO 4.2: Using WorldToMinimap create a white rect which represents the area that the camera records of the world onto the minimap 
 	SDL_Rect rect = { 0,0,0,0 };
 	iPoint rect_position = WorldToMinimap(-App->render->camera.x, -App->render->camera.y);
 	App->render->DrawQuad({ rect_position.x, rect_position.y, (int)(App->render->camera.w * scale),(int)(App->render->camera.h * scale) }, 255, 255, 255, 255, false, false);
@@ -156,8 +157,8 @@ iPoint j1Minimap::WorldToMinimap(int x, int y) {
 	return minimap_position;
 }
 
-iPoint j1Minimap::ScreenToMinimap(int x, int y) {
-	//TODO 5: Fill this function to convert a position from screen to the Minimap
+iPoint j1Minimap::ScreenToMinimapToWorld(int x, int y) {
+	//TODO 5: Fill this function to convert a position from screen to the Minimap and directly to world
 	iPoint minimap_position;
 	minimap_position.x = (x - position.x - width * 0.5f)/scale;
 	minimap_position.y = (y - position.y)/scale;

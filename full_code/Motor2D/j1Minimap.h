@@ -23,7 +23,7 @@ public:
 
 	bool CreateMinimap();
 	iPoint WorldToMinimap(int x, int y);
-	iPoint ScreenToMinimap(int x, int y);
+	iPoint ScreenToMinimapToWorld(int x, int y);
 
 public:
 	iPoint position;
