@@ -46,7 +46,7 @@ In RTS games, in order to make the minimap as functional as possible, it normall
  * It shows all allies position and enemies in the allies field of view. 
  * It can be orthogonal or isometric. 
  * It can show the path some entities are following.
- * It may have icons represetnting temporary alerts or notifications. 
+ * It may have icons representing temporary alerts or notifications. 
 
 |![StarCraft](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/Starcraft%20Minimap.png?raw=true)|![Age of Empires](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/AoE2_Minimap.jpg?raw=true)|![they are billions image](https://github.com/marcpages2020/Minimaps/blob/master/docs/images/TheyAreBillionsMinimap.jpg?raw=true)|
 |:---:|:---:|:---:|
@@ -109,6 +109,14 @@ Now that you have all the basic material to implement a minimap imagination is t
 * Try replacing the squares by textures. 
 * Using the config file try changing the corner in which the minimap, the margin and the width.
 * Try replacing the black background by a colored one.  
+
+## Improvements
+
+I've shown you the basics to implement a minimap but there are many minor improvements which could be applied into the code to get a different result which fits better your project. Some examples:
+* Take an isometric map and create an orthogonal minimap.
+* Play fx when an alert in the minimap appears. 
+* Use textures for the icons instead of quads.
+* Add Fog of War into the minimap. 
 
 ## Sources
 * [My personal crusade against mini-maps and other corner based HUD elements in immersive games by Andrii Honcharuk on Gamasutra](https://www.gamasutra.com/blogs/AndriiHoncharuk/20170714/301733/My_personal_crusade_against_minimaps_and_other_corner_based_HUD_elements_in_immersive_games.php)

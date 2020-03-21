@@ -113,8 +113,9 @@ bool j1Scene::PostUpdate()
 		ret = false;
 
 	App->render->DrawQuad(test_rect, 255, 0, 0, 255);
-	test_rect.x;
-	test_rect.y;
+	static char title[256];
+	sprintf_s(title, 256, "Minimaps Personal Research - Quad position: x: %i y: %i", test_rect.x, test_rect.y);
+	App->win->SetTitle(title);
 
 	return ret;
 }

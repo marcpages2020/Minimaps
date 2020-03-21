@@ -94,6 +94,7 @@ bool j1Minimap::Start() {
 }
 
 bool j1Minimap::PostUpdate() {
+
 	//TODO 3: When you have the texture try blitting it on screen
 	App->render->Blit(texture, position.x, position.y, NULL, 1.0, 0);
 	
