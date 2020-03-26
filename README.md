@@ -5,7 +5,7 @@ Marc Garrigó's linkedin: https://www.linkedin.com/in/mgarrigo/
 I've made a personal research on how minimaps work, how different games have approached them and how to implement one in C language. You can take a look at my repository here: 
 https://github.com/marcpages2020/Minimaps
 
-In this release you can see the final result of the implementation and if yoy want to learn about the whole process you can either visit my website:
+In this release you can see the final result of the implementation and if you want to learn about the whole process you can either visit my website:
 https://marcpages2020.github.io/Minimaps/
 
 Or try implementing it downloading the project exercises in the repository.
